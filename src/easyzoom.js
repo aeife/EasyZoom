@@ -196,16 +196,12 @@
         // xl = (xl > dw) ? dw : xl;
 
         // Close if outside
-        if (xl < 0 || xt < 0 || xl > dw || xt > dh) {
-            this.hide();
-        }
-        else {
+        if (!(xl < 0 || xt < 0 || xl > dw || xt > dh)) {
             this.$zoom.css({
                 top:  '' + (Math.ceil(xt) * -1) + 'px',
                 left: '' + (Math.ceil(xl) * -1) + 'px'
             });
         }
-
     };
 
     /**
