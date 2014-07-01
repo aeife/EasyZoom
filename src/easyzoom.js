@@ -161,6 +161,8 @@
             self.$notice.detach();
             self.$flyout.html(self.$zoom);
             self.$target.removeClass('is-loading').addClass('is-ready');
+            self.$flyout.css('max-height', self.$zoom[0].height);
+            self.$flyout.css('max-width', self.$zoom[0].width);
 
             callback();
         };
@@ -195,10 +197,15 @@
         // xt = (xt > dh) ? dh : xt;
         // xl = (xl > dw) ? dw : xl;
 
-        this.$zoom.css({
-            top:  '' + (Math.ceil(xt) * -1) + 'px',
-            left: '' + (Math.ceil(xl) * -1) + 'px'
-        });
+        if (xl < 0 || xt < 0 || xl > dw || xt > dh) {
+            this.hide();
+        }
+        else {
+            this.$zoom.css({
+                top:  '' + (Math.ceil(xt) * -1) + 'px',
+                left: '' + (Math.ceil(xl) * -1) + 'px'
+            });
+        }
     };
 
     /**
